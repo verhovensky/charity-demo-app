@@ -7,7 +7,6 @@ const style = StyleSheet.create({
     fontFamily: getFontFamily('Inter', '800'),
     lineHeight: scalefontSize(29),
     fontSize: scalefontSize(24),
-    color: 'red',
   },
   title2: {
     fontFamily: getFontFamily('Inter', '600'),

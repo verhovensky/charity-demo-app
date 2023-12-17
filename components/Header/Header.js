@@ -27,11 +27,11 @@ const Header = props => {
 Header.default = {
   title: '',
   type: 1,
-  color: '#000000',
+  color: 'black',
 };
 
 Header.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   type: PropTypes.number,
   color: PropTypes.string,
 };
