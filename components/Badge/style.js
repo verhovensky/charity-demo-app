@@ -12,7 +12,6 @@ const style = StyleSheet.create({
     borderRadius: horizontalScale(50),
     height: verticalScale(22),
     justifyContent: 'center',
-    margin: verticalScale(15),
   },
   title: {
     color: '#FFFFFF',
