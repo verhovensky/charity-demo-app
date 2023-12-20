@@ -2,10 +2,12 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const defaultUserInitialState = {
   id: 999999, // for testing?
-  firstName: 'Not set',
-  lastName: 'Not set',
+  firstName: 'Peter',
+  lastName: 'Verhovensky',
   nickname: 'Not set',
   email: 'Not set',
+  profileImage:
+    'https://cdn.dribbble.com/users/1577045/screenshots/4914645/media/028d394ffb00cb7a4b2ef9915a384fd9.png?compress=1&resize=400x300&vertical=top',
 };
 
 export const userSlice = createSlice({
@@ -21,9 +23,12 @@ export const userSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload.email;
     },
+    resetToInitialState: () => {
+      return defaultUserInitialState;
+    },
   },
 });
 
-export const {setNickname, setEmail} = userSlice.actions;
+export const {setNickname, setEmail, resetToInitialState} = userSlice.actions;
 export default userSlice;
 // Could have been: export default userSlice.reducer;

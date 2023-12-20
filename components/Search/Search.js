@@ -38,10 +38,12 @@ const Search = props => {
 
 Search.propTypes = {
   onSearch: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 Search.defaultProps = {
   onSearch: () => {},
+  placeholder: 'Search',
 };
 
 export default Search;
