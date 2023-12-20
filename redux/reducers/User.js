@@ -9,7 +9,7 @@ const defaultUserInitialState = {
 };
 
 export const userSlice = createSlice({
-  name: 'user', // REQUIRED as name inside store
+  name: 'user', // REQUIRED property of slice inside store
   nickname: 'Default username',
   initialState: {
     ...defaultUserInitialState,
