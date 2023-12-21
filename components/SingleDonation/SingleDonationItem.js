@@ -14,7 +14,12 @@ const SingleDonationItem = props => {
       </View>
       <View style={style.containerDonationInfo}>
         <Image source={{uri: props.uri}} style={style.image} />
-        <Header title={props.donationTitle} type={1} color={'#0A043C'} />
+        <Header
+          title={props.donationTitle}
+          type={2}
+          color={'#0A043C'}
+          numberOfLines={1}
+        />
         <Header
           title={'$' + parseFloat(props.price).toFixed(2)}
           type={2}

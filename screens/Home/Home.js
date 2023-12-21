@@ -132,21 +132,23 @@ const Home = () => {
         {donationItems.length > 0 && (
           <View style={style.donationItemsContainer}>
             {donationItems.map(item => (
-              <SingleDonationItem
-                badgeTitle={
-                  categories.categories.filter(
-                    val => val.categoryId === categories.selectedCategoryId,
-                  )[0].name
-                }
-                onPress={() => {
-                  console.log('donationItem pressed' + item.donationItemId);
-                }}
-                donationItemId={item.donationItemId}
-                donationTitle={item.name}
-                uri={item.image}
-                key={item.donationItemId}
-                price={item.price}
-              />
+              <View style={style.donationItem} key={item.donationItemId}>
+                <SingleDonationItem
+                  badgeTitle={
+                    categories.categories.filter(
+                      val => val.categoryId === categories.selectedCategoryId,
+                    )[0].name
+                  }
+                  onPress={() => {
+                    console.log('donationItem pressed' + item.donationItemId);
+                  }}
+                  donationItemId={item.donationItemId}
+                  donationTitle={item.name}
+                  uri={item.image}
+                  key={item.donationItemId}
+                  price={parseFloat(item.price)}
+                />
+              </View>
             ))}
           </View>
         )}

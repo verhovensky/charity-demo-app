@@ -2,11 +2,10 @@ import {StyleSheet} from 'react-native';
 import {horizontalScale, verticalScale} from '../../styles/scale';
 
 const style = StyleSheet.create({
-  container: {},
   image: {
     borderRadius: horizontalScale(12),
     resizeMode: 'cover',
-    width: horizontalScale(155),
+    width: horizontalScale(140),
     height: verticalScale(170),
   },
   containerBadge: {
