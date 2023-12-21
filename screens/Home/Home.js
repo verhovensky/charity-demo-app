@@ -1,3 +1,5 @@
+// @refresh reset
+
 import style from './style';
 import {
   FlatList,
@@ -20,6 +22,18 @@ import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
 const Home = () => {
   const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
+  const donations = useSelector(state => state.donations);
+  console.log(donations);
+  // Donations
+  const [donationItems, setDonationItems] = useState([]);
+  useEffect(() => {
+    const currentDonationItems = donations.donations;
+    const filteredDonationItems = currentDonationItems.filter(item =>
+      item.categoryIds.includes(categories.selectedCategoryId),
+    );
+    setDonationItems(filteredDonationItems);
+    console.log('filteredDonationItems', filteredDonationItems);
+  }, [categories.selectedCategoryId, donations.donations]);
   // Categories
   const [categoryPage, setCategoryPage] = useState(1);
   const [categoryList, setCategoryList] = useState([]);
@@ -27,7 +41,7 @@ const Home = () => {
   const categoryPageSize = 4;
   // Initially load categories
   useEffect(() => {
-    console.log('End reached');
+    console.log('Categories end reached');
     setCategoryList(
       pagination(categories.categories, categoryPage, categoryPageSize),
     );
@@ -45,7 +59,6 @@ const Home = () => {
   };
   // Dispatch., logging
   const dispatch = useDispatch();
-  console.log(categories);
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -116,6 +129,27 @@ const Home = () => {
             )}
           />
         </View>
+        {donationItems.length > 0 && (
+          <View style={style.donationItemsContainer}>
+            {donationItems.map(item => (
+              <SingleDonationItem
+                badgeTitle={
+                  categories.categories.filter(
+                    val => val.categoryId === categories.selectedCategoryId,
+                  )[0].name
+                }
+                onPress={() => {
+                  console.log('donationItem pressed' + item.donationItemId);
+                }}
+                donationItemId={item.donationItemId}
+                donationTitle={item.name}
+                uri={item.image}
+                key={item.donationItemId}
+                price={item.price}
+              />
+            ))}
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
