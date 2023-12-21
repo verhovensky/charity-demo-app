@@ -13,12 +13,37 @@ import SingleDonationItem from '../../components/SingleDonation/SingleDonationIt
 import Header from '../../components/Header/Header';
 import Search from '../../components/Search/Search';
 import {useSelector, useDispatch} from 'react-redux';
+import {useEffect, useState} from 'react';
 import Tab from '../../components/Tab/Tab';
 import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
 
 const Home = () => {
   const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
+  // Categories
+  const [categoryPage, setCategoryPage] = useState(1);
+  const [categoryList, setCategoryList] = useState([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+  const categoryPageSize = 4;
+  // Initially load categories
+  useEffect(() => {
+    console.log('End reached');
+    setCategoryList(
+      pagination(categories.categories, categoryPage, categoryPageSize),
+    );
+    setCategoryPage(prev => prev + 1);
+    setIsLoadingCategories(false);
+  }, []);
+  // Pagination
+  const pagination = (items, pageNumber, pageSize) => {
+    const startIndex = (pageNumber - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    if (startIndex >= items.length) {
+      return [];
+    }
+    return items.slice(startIndex, endIndex);
+  };
+  // Dispatch., logging
   const dispatch = useDispatch();
   console.log(categories);
   return (
@@ -59,9 +84,26 @@ const Home = () => {
         </View>
         <View style={style.categories}>
           <FlatList
+            onEndReachedThreshold={0.5}
+            onEndReached={() => {
+              if (isLoadingCategories) {
+                return;
+              }
+              setIsLoadingCategories(true);
+              let newCategories = pagination(
+                categories.categories,
+                categoryPage,
+                categoryPageSize,
+              );
+              if (newCategories.length > 0) {
+                setCategoryList(prev => [...prev, ...newCategories]);
+                setCategoryPage(prev => prev + 1);
+              }
+              setIsLoadingCategories(false);
+            }}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={categories.categories}
+            data={categoryList}
             renderItem={({item}) => (
               <View style={style.categoryItem} key={item.categoryId}>
                 <Tab
