@@ -18,8 +18,10 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useEffect, useState} from 'react';
 import Tab from '../../components/Tab/Tab';
 import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
+import {updateSelectedDonationId} from '../../redux/reducers/Donations';
+import Routes from '../../navigation/Routes';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
@@ -140,7 +142,8 @@ const Home = () => {
                     )[0].name
                   }
                   onPress={() => {
-                    console.log('donationItem pressed' + item.donationItemId);
+                    dispatch(updateSelectedDonationId(item.donationItemId));
+                    navigation.navigate(Routes.SingleDonation);
                   }}
                   donationItemId={item.donationItemId}
                   donationTitle={item.name}

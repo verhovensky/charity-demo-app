@@ -1,6 +1,6 @@
 const Routes = {
   Home: 'Home',
-  Details: 'Details',
+  SingleDonation: 'SingleDonation',
 };
 
 export default Routes;

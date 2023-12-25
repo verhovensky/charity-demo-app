@@ -4,6 +4,7 @@ import initialDonations from './DonationsList';
 const initialState = {
   donations: initialDonations,
   selectedDonationId: null,
+  selectedDonationInformation: null,
 };
 
 const donationsSlice = createSlice({
@@ -15,6 +16,9 @@ const donationsSlice = createSlice({
     },
     updateSelectedDonationId: (state, action) => {
       state.selectedDonationId = action.payload;
+      state.selectedDonationInformation = state.donations.find(
+        item => item.donationItemId === action.payload,
+      );
     },
   },
 });
