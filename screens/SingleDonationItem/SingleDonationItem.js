@@ -1,7 +1,9 @@
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 import style from './style';
+import globalStyle from '../../assets/styles/globalStyle';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
+import BackButton from '../../components/BackButton/BackButton';
 
 const SingleDonationItem = props => {
   const DonationitemInformation = useSelector(
@@ -9,9 +11,11 @@ const SingleDonationItem = props => {
   );
   console.log(DonationitemInformation);
   return (
-    <View>
-      <Text>Single Donation Item</Text>
-    </View>
+    <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
+      <ScrollView style={style.container}>
+        <BackButton onPress={() => props.navigation.goBack()} />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
