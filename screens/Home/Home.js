@@ -59,8 +59,14 @@ const Home = ({navigation}) => {
     }
     return items.slice(startIndex, endIndex);
   };
-  // Dispatch., logging
+  // Dispatch
   const dispatch = useDispatch();
+
+  // TODO: use here in Badge component
+  const donationItemCategoriesInformation = categories.categories.find(
+    val => val.categoryId === categories.selectedCategoryId,
+  );
+
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -143,7 +149,14 @@ const Home = ({navigation}) => {
                   }
                   onPress={() => {
                     dispatch(updateSelectedDonationId(item.donationItemId));
-                    navigation.navigate(Routes.SingleDonation);
+                    navigation.navigate(Routes.SingleDonation, {
+                      donationItemId: item.donationItemId,
+                      donationItemName: item.name,
+                      donationItemPrice: item.price,
+                      donationItemImage: item.image,
+                      donationItemDescription: item.description,
+                      donationItemCategories: donationItemCategoriesInformation,
+                    });
                   }}
                   donationItemId={item.donationItemId}
                   donationTitle={item.name}
