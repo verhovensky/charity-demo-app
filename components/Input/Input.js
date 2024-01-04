@@ -28,7 +28,7 @@ const Input = props => {
   );
 };
 
-Input.PropTypes = {
+Input.propTypes = {
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   keyboardType: PropTypes.string,
