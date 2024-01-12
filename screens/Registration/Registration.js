@@ -6,11 +6,12 @@ import {useState} from 'react';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import BackButton from '../../components/BackButton/BackButton';
+import {creatUser} from '../../api/user';
 
 const Registration = ({navigation}) => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
-
   return (
     <SafeAreaView style={(globalStyle.backgroundWhite, globalStyle.flex)}>
       <View style={style.backButton}>
@@ -37,13 +38,17 @@ const Registration = ({navigation}) => {
             keyboardType={'email-address'}
             onChangeText={value => setEmail(value)}
           />
+          <Input
+            label={'Password'}
+            placeholder={'*****'}
+            secureTextEntry={true}
+            onChangeText={value => setPassword(value)}
+          />
         </View>
         <View style={style.marginBottom24}>
           <Button
             title={'Register'}
-            onPress={() => {
-              console.log(`Registered with ${email} ${fullName}`);
-            }}
+            onPress={async () => await creatUser(fullName, email, password)}
           />
         </View>
       </ScrollView>
