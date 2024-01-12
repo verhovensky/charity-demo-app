@@ -8,12 +8,45 @@ export const creatUser = async (fullName, email, password) => {
     return user;
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
-      console.log(`Email ${email} is already in use!`);
+      return {
+        error: 'Email is already in use!',
+      };
     } else if (error.code === 'auth/weak-password') {
-      console.log('Password is too weak!');
+      return {
+        error: 'Password is too weak!',
+      };
     } else if (error.code === 'auth/invalid-email') {
-      console.log('Email is invalid!');
+      return {
+        error: 'Email is invalid!',
+      };
     }
-    console.log('Undefined error', error);
+  }
+};
+
+export const loginUser = async (email, password) => {
+  try {
+    const response = await auth().signInWithEmailAndPassword(email, password);
+    const token = await response.user.getIdToken();
+    console.log(response);
+    return {
+      status: true,
+      displayName: response.user.displayName,
+      email: response.user.email,
+      token: token,
+    };
+  } catch (error) {
+    if (error.code === 'auth/user-not-found') {
+      return {
+        error: `User ${email} not found!`,
+      };
+    } else if (error.code === 'auth/wrong-password') {
+      return {
+        error: 'Wrong password!',
+      };
+    } else if (error.code === 'auth/invalid-email') {
+      return {
+        error: 'Email is invalid!',
+      };
+    }
   }
 };

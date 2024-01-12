@@ -32,7 +32,11 @@ const Login = ({navigation}) => {
           />
         </View>
         <View style={style.marginBottom24}>
-          <Button title={'Login'} onPress={() => {}} />
+          <Button
+            title={'Login'}
+            isDisabled={email.length < 5 || password.length < 8}
+            onPress={() => {}}
+          />
         </View>
         <Pressable
           style={style.getRegistered}
