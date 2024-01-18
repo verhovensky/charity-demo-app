@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import MainNavigation from './navigation/MainNavigation';
+import RootNavigation from './navigation/RootNavigation';
 import {Provider} from 'react-redux';
 import Store from './redux/store';
 
@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        <MainNavigation />
+        <RootNavigation />
       </NavigationContainer>
     </Provider>
   );

@@ -12,8 +12,6 @@ const MainNavigation = () => {
     <MainStack.Navigator
       screenOptions={{headerShown: false}}
       initialRouteName={Routes.Login}>
-      <MainStack.Screen name={Routes.Login} component={Login} />
-      <MainStack.Screen name={Routes.Registration} component={Registration} />
       <MainStack.Screen name={Routes.Home} component={Home} />
       <MainStack.Screen
         name={Routes.SingleDonation}
@@ -23,4 +21,15 @@ const MainNavigation = () => {
   );
 };
 
-export default MainNavigation;
+const NonAuthenticatedNavigation = () => {
+  return (
+    <MainStack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName={Routes.Login}>
+      <MainStack.Screen name={Routes.Login} component={Login} />
+      <MainStack.Screen name={Routes.Registration} component={Registration} />
+    </MainStack.Navigator>
+  );
+};
+
+export {MainNavigation, NonAuthenticatedNavigation};
