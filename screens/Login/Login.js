@@ -7,13 +7,15 @@ import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import Routes from '../../navigation/Routes';
 import {loginUser} from '../../api/user';
-import {err} from 'react-native-svg';
+import {useDispatch} from 'react-redux';
+import {logIn, resetToInitialState} from '../../redux/reducers/User';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView style={(globalStyle.backgroundWhite, globalStyle.flex)}>
@@ -43,16 +45,16 @@ const Login = ({navigation}) => {
             isDisabled={email.length < 5 || password.length < 8}
             onPress={async () => {
               let user = await loginUser(email, password);
-              console.log(user);
               if (user.status === false) {
                 setSuccess('');
                 setError(user.error);
               }
               if (user.status) {
                 setSuccess('Login successful!');
-                // navigation.navigate(Routes.Home);
+                dispatch(logIn(user));
+                navigation.navigate(Routes.Home);
               }
-              if ((user === undefined) | (user === null)) {
+              if (user === undefined || user === null) {
                 setError('Something went wrong!');
               }
             }}

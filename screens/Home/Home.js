@@ -25,7 +25,6 @@ const Home = ({navigation}) => {
   const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
-  console.log(donations);
   // Donations
   const [donationItems, setDonationItems] = useState([]);
   useEffect(() => {
@@ -75,7 +74,7 @@ const Home = ({navigation}) => {
             <Text style={style.headerIntroStyle}>Hello</Text>
             <View style={style.customMarginUsername} />
             <Header
-              title={user.firstName + ' ' + user.lastName[0] + '.☝️'}
+              title={user.displayName + '☝️'}
               type={1}
               color={'#0A043C'}
             />

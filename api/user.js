@@ -27,12 +27,16 @@ export const loginUser = async (email, password) => {
   try {
     const response = await auth().signInWithEmailAndPassword(email, password);
     const token = await response.user.getIdToken();
-    return {
-      status: response.user.status,
-      displayName: response.user.displayName,
-      email: response.user.email,
-      token: token,
-    };
+    if (response.user) {
+      return {
+        status: true,
+        displayName: response.user.displayName,
+        email: response.user.email,
+        token: token,
+      };
+    } else {
+      return {status: false, error: 'User not found!'};
+    }
   } catch (error) {
     if (error.code === 'auth/invalid-email') {
       return {status: false, error: 'Email is invalid!'};

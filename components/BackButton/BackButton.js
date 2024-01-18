@@ -11,7 +11,6 @@ const BackButton = props => {
         style={style.container}
         onPress={() => {
           props.onPress();
-          console.log('Pressed back button');
         }}>
         <FontAwesomeIcon icon={faArrowLeft} size={25} color="black" />
       </Pressable>
