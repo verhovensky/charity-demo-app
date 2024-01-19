@@ -57,6 +57,13 @@ const style = StyleSheet.create({
     maxWidth: '49%',
     marginBottom: verticalScale(5),
   },
+  logoutButton: {
+    backgroundColor: '#2979F2',
+    borderRadius: horizontalScale(40),
+    marginTop: horizontalScale(10),
+    padding: horizontalScale(10),
+    alignItems: 'center',
+  },
 });
 
 export default style;

@@ -49,6 +49,7 @@ const Login = ({navigation}) => {
                 setSuccess('');
                 setError(user.error);
               }
+              // TODO: useEffect to hide message after 3000 ms, (setTimeout, then clear)
               if (user.status) {
                 setSuccess('Login successful!');
                 dispatch(logIn(user));
