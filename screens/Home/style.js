@@ -64,6 +64,10 @@ const style = StyleSheet.create({
     padding: horizontalScale(10),
     alignItems: 'center',
   },
+  logoutAndImageContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
 
 export default style;

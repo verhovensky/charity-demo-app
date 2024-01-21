@@ -82,6 +82,13 @@ const Home = ({navigation}) => {
               type={1}
               color={'#0A043C'}
             />
+          </View>
+          <View style={style.logoutAndImageContainer}>
+            <Image
+              source={{uri: user.profileImage}}
+              resizeMode="contain"
+              style={style.profileImage}
+            />
             <Pressable
               style={style.logoutButton}
               onPress={async () => {
@@ -91,11 +98,6 @@ const Home = ({navigation}) => {
               <Header title="Logout" color="white" type={3} />
             </Pressable>
           </View>
-          <Image
-            source={{uri: user.profileImage}}
-            resizeMode="contain"
-            style={style.profileImage}
-          />
         </View>
         <View style={style.searchBox}>
           <Search />
