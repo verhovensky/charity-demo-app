@@ -22,8 +22,6 @@ import {updateSelectedDonationId} from '../../redux/reducers/Donations';
 import Routes from '../../navigation/Routes';
 import {resetToInitialState} from '../../redux/reducers/User';
 import {logOut} from '../../api/user';
-import Button from '../../components/Button/Button';
-import Badge from '../../components/Badge/Badge';
 
 const Home = ({navigation}) => {
   const user = useSelector(state => state.user);
