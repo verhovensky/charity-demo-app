@@ -4,7 +4,6 @@ export const creatUser = async (fullName, email, password) => {
   try {
     const user = await auth().createUserWithEmailAndPassword(email, password);
     await user.user.updateProfile({displayName: fullName});
-    console.log(user);
     return user;
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {

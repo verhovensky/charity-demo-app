@@ -35,7 +35,6 @@ const Home = ({navigation}) => {
       item.categoryIds.includes(categories.selectedCategoryId),
     );
     setDonationItems(filteredDonationItems);
-    console.log('filteredDonationItems', filteredDonationItems);
   }, [categories.selectedCategoryId, donations.donations]);
   // Categories
   const [categoryPage, setCategoryPage] = useState(1);
@@ -44,7 +43,6 @@ const Home = ({navigation}) => {
   const categoryPageSize = 4;
   // Initially load categories
   useEffect(() => {
-    console.log('Categories end reached');
     setCategoryList(
       pagination(categories.categories, categoryPage, categoryPageSize),
     );
