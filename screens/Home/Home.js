@@ -100,11 +100,7 @@ const Home = ({navigation}) => {
         <View style={style.searchBox}>
           <Search />
         </View>
-        <Pressable
-          style={style.highlitedImageContainer}
-          onPress={() => {
-            console.log('highlitedImage pressed');
-          }}>
+        <Pressable style={style.highlitedImageContainer} onPress={() => {}}>
           <Image
             source={require('../../assets/images/highlighted_image.png')}
             resizeMode="contain"

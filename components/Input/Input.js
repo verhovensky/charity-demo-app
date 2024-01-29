@@ -16,12 +16,6 @@ const Input = props => {
         value={value}
         onChangeText={value => {
           setValue(value);
-          console.log(
-            `INPUT VALUE OF ${
-              props.placeholder ? props.placeholder : 'unknown input'
-            }`,
-            value,
-          );
           props.onChangeText(value);
         }}
       />
